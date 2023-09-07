@@ -1,4 +1,9 @@
 .wrapper {
+    --header-border: 92px;
+    --search-header-height: 46px;
+    --search-top-spacer: 9px;
+    --search-button-width: 52px;
+
     width: 100%;
     height: var(--default-header-height);
     box-shadow: 0 1px 1px rgba(0 0 0/ 12%);
@@ -8,4 +13,87 @@
 .inner {
     height: 100%;
     width: var(--default-width);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+}
+
+.search,
+.search-result {
+    width: 361px;
+}
+.search {
+    display: flex;
+    position: relative;
+    height: var(--search-header-height);
+    border-radius: var(--header-border);
+    background-color: rgba(22, 24, 35, 0.06);
+    border: 1px solid transparent;
+    input {
+        height: 100%;
+        flex: 1;
+        padding: 0 16px;
+        background-color: transparent;
+        color: var(--black);
+        font-size: 1.6rem;
+        caret-color: var(---primary-color);
+    }
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        top: var(--search-top-spacer);
+        right: 51px;
+        height: calc(
+            var(--search-header-height) - var(--search-top-spacer) * 2
+        );
+        width: 1px;
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+
+    &:hover {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+.search-title {
+    color: rgba(22, 24, 35, 0.5);
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 5px 12px;
+}
+
+.clear,
+.load {
+    position: absolute;
+    color: rgba(22, 24, 35, 0.34);
+    right: calc(var(--search-button-width) + 14px);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.search-btn {
+    height: 100%;
+    width: var(--search-button-width);
+    border-top-right-radius: var(--header-border);
+    border-bottom-right-radius: var(--header-border);
+    font-size: 1.8rem;
+    color: rgba(22, 24, 35, 0.34);
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.06);
+        cursor: pointer;
+        color: var(--black);
+    }
+}
+
+.action {
+}
+
+.custom-button {
+    color: rgba(22, 24, 35, 0.75);
 }
