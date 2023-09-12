@@ -9,6 +9,7 @@
     box-shadow: 0 1px 1px rgba(0 0 0/ 12%);
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .inner {
     height: 100%;
@@ -16,6 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 var(--default-layout-horizontal-spacer);
 }
 
 .logo {
@@ -92,8 +94,34 @@
 }
 
 .action {
+    display: flex;
+    align-items: center;
+    .usercurrent-icon {
+        background-color: transparent;
+        color: rgba(22, 24, 35, 1);
+        padding: 4px 16px;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+    .avatar-current {
+        height: 32px;
+        width: 32px;
+        border-radius: 99px;
+        object-fit: cover;
+        cursor: pointer;
+        margin-left: 12px;
+    }
 }
 
 .custom-button {
     color: rgba(22, 24, 35, 0.75);
+}
+
+.more-btn {
+    font-size: 2rem;
+    margin-left: 28px;
+    background-color: var(--white);
+    padding: 4px 8px;
+    cursor: pointer;
 }

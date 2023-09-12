@@ -9,6 +9,7 @@
     --text-color: #333;
     --default-header-height: 60px;
     --default-width: 1150px;
+    --default-layout-horizontal-spacer: 24px;
 }
 * {
     box-sizing: border-box;
@@ -21,8 +22,8 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    // font-family: 'Montserrat', sans-serif;
+    // font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
@@ -37,4 +38,25 @@ input,
 a[href] {
     text-decoration: none;
     color: var(--text-color);
+}
+
+//Custom tippy tooltips
+body {
+    .tippy-box {
+        background-color: rgba(84, 84, 84, 0.92);
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        border-radius: 8px;
+        color: rgb(255, 255, 255);
+    }
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+    .tippy-content {
+        padding: 8px 9px;
+    }
+    .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+        top: -8px;
+    }
 }
