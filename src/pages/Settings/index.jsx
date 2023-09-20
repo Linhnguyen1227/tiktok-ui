@@ -1,14 +1,14 @@
 import classNames from 'classnames/bind';
-import styles from './Home.module.scss';
+import styles from './Settings.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Home() {
+function Settings() {
     return (
         <div className={cx('wrapper')}>
-            <h1>Home page</h1>
+            <h2>Setting page</h2>
         </div>
     );
 }
 
-export default Home;
+export default Settings;

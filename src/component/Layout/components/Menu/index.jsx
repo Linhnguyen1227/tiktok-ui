@@ -8,7 +8,12 @@ import Header from './Header.jsx';
 
 const cx = classNames.bind(styles);
 const defaultFc = () => {};
-function Menu({ children, items = [], onChange = { defaultFc } }) {
+function Menu({
+    children,
+    items = [],
+    hideOnClick = false,
+    onChange = { defaultFc },
+}) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
 
@@ -21,6 +26,9 @@ function Menu({ children, items = [], onChange = { defaultFc } }) {
                     key={index}
                     data={item}
                     onClick={() => {
+                        if (item.separate) {
+                            item.separate = false;
+                        }
                         if (isChildren) {
                             setHistory((prev) => [...prev, item.children]);
                         } else {
@@ -37,13 +45,13 @@ function Menu({ children, items = [], onChange = { defaultFc } }) {
             interactive={true}
             placement="bottom-end"
             delay={[0, 700]}
-            appendTo="parent"
+            hideOnClick={hideOnClick}
             onHide={() => {
                 setHistory((prev) => prev.slice(0, 1));
             }}
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
+                    <PopperWrapper className={cx('menu-popper')}>
                         {history.length > 1 && (
                             <Header
                                 title="Language"
@@ -54,7 +62,7 @@ function Menu({ children, items = [], onChange = { defaultFc } }) {
                                 }}
                             />
                         )}
-                        {renderItem()}
+                        <div className={cx('menu-body')}>{renderItem()}</div>
                     </PopperWrapper>
                 </div>
             )}

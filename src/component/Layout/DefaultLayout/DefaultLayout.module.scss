@@ -5,6 +5,8 @@
 }
 
 .container {
+    margin-top: var(--default-header-height);
+    overflow-y: overlay;
     display: flex;
     width: var(--default-width);
     min-height: 1000px;

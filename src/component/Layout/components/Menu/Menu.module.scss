@@ -11,6 +11,13 @@
     }
 }
 
+.menu-popper {
+    padding-bottom: 8px;
+}
+
+.menu-body {
+    overflow-y: auto;
+}
 //Menu item
 .menu-item {
     &.separate {
@@ -25,6 +32,7 @@
 //Header menu item
 .header {
     display: flex;
+    flex-shrink: 0;
     text-align: center;
     align-items: center;
     height: 50px;

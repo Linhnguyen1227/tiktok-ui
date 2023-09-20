@@ -1,16 +1,13 @@
-import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import ConfigRouter from '~/config/routes';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faCircleXmark,
-    faSpinner,
-    faMagnifyingGlass,
     faRightToBracket,
     faEllipsisVertical,
     faEarthAsia,
     faCircleQuestion,
     faKeyboard,
-    faCloudUpload,
     faUser,
     faCoins,
     faShop,
@@ -19,18 +16,19 @@ import {
     faMoon,
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
-import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
 import styles from './header.module.scss';
 import image from '~/assets/images/index';
-import { Wrapper as PopperWrapper } from '~/component/Popper';
-import AccountItem from '~/component/AccountItems';
+import Image from '~/component/Image';
 
 import Button from '~/component/Button';
 import Menu from '../Menu/index.jsx';
 import { faBookmark } from '@fortawesome/free-regular-svg-icons';
+import { IconUpload, IconMassage, IconInbox } from '../Icon';
+import Search from '../Search';
+import { Link } from 'react-router-dom';
 //----------------
 const cx = classNames.bind(styles);
 const MENU_ITEM = [
@@ -67,17 +65,17 @@ const MENU_USERS = [
     {
         icon: <FontAwesomeIcon icon={faUser} />,
         title: 'View profile',
-        to: '@profile',
+        to: '/profile',
     },
     {
         icon: <FontAwesomeIcon icon={faBookmark} />,
         title: 'Favorite',
-        to: '/feedback',
+        to: '/favorite',
     },
     {
         icon: <FontAwesomeIcon icon={faCoins} />,
         title: 'Get coins',
-        to: '@coins',
+        to: '/coins',
     },
     {
         icon: <FontAwesomeIcon icon={faShop} />,
@@ -92,7 +90,7 @@ const MENU_USERS = [
     {
         icon: <FontAwesomeIcon icon={faGear} />,
         title: 'Settings',
-        to: '/feedback',
+        to: '/settings',
     },
     ...MENU_ITEM,
     {
@@ -109,15 +107,9 @@ const MENU_USERS = [
 
 function Header() {
     const currentUser = true;
-    const [searchResult, setSearchResult] = useState([]);
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 0);
-    }, []);
     //Handlelogic
-    const handleOnChange = (menuItmes) => {
-        switch (menuItmes.type) {
+    const handleOnChange = (menuItems) => {
+        switch (menuItems.type) {
             case 'language':
                 //handle
                 break;
@@ -128,53 +120,43 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
-                    <img src={image.logo} alt="Tiktok" />
+                    <Link to={ConfigRouter.home} className={cx('logo-link')}>
+                        <img src={image.logo} alt="Tiktok" />
+                    </Link>
                 </div>
-                <HeadlessTippy
-                    visible={searchResult.length > 0}
-                    // visible
-                    interactive={true}
-                    appendTo="parent"
-                    render={(attrs) => (
-                        <div
-                            className={cx('search-result')}
-                            tabIndex="-1"
-                            {...attrs}
-                        >
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search" spellCheck="false" />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon
-                            className={cx('load')}
-                            icon={faSpinner}
-                        />
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                {/* Search */}
+                <Search />
                 <div className={cx('action')}>
                     {currentUser ? (
                         <>
+                            <Button
+                                outline
+                                to="/upload"
+                                className={cx('usercurrent-icon-upload')}
+                            >
+                                <IconUpload className={cx('icon-upload')} />
+                                <span>Upload</span>
+                            </Button>
+
+                            <Tippy
+                                content="Message"
+                                placement="bottom"
+                                delay={[0, 200]}
+                            >
+                                <button className={cx('usercurrent-icon')}>
+                                    <IconMassage />
+                                </button>
+                            </Tippy>
                             <Tippy
                                 delay={[0, 200]}
-                                content="Upload video"
+                                content="Inbox"
                                 placement="bottom"
                             >
                                 <button className={cx('usercurrent-icon')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <IconInbox
+                                        className={cx('inbox-icon')}
+                                        notifi={'12'}
+                                    />
                                 </button>
                             </Tippy>
                         </>
@@ -199,11 +181,13 @@ function Header() {
                     <Menu
                         items={currentUser ? MENU_USERS : MENU_ITEM}
                         onChange={handleOnChange}
+                        currentUser={currentUser}
                     >
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('avatar-current')}
-                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/e6883dd85f637a239fc905a1cea5fae0~c5_100x100.jpeg?x-expires=1694689200&x-signature=AXQwV8Wk0myR4EQ1SyM8TpwqMR8%3D"
+                                fallback="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/59e989e348cbc96c3acc009fdfa545e1~c5_720x720.jpeg?x-expires=1694775600&x-signature=vulnaxjVN3c3bE%2Fbj6j5NElnE2g%3D"
+                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/59e989e348cbc96c3acc009fdfa545e1~c5_720x720.jpeg?x-expires=1694775600&x-signature=vulnaxjVN3c3bE%2Fbj6j5NElnE2g%3D"
                                 alt="current_avatar"
                             />
                         ) : (
