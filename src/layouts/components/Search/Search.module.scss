@@ -1,0 +1,89 @@
+.search,
+.search-result {
+    width: 361px;
+}
+.search {
+    display: flex;
+    position: relative;
+    height: var(--search-header-height);
+    border-radius: var(--header-border);
+    background-color: rgba(22, 24, 35, 0.06);
+    border: 1px solid transparent;
+    input {
+        height: 100%;
+        font-family: var(--font-family);
+        flex: 1;
+        padding: 0 40px 0 16px;
+        background-color: transparent;
+        color: var(--black);
+        font-size: 1.6rem;
+        caret-color: var(---primary-color);
+    }
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+    &:focus-within:has(input:focus) {
+        // chi focus khi input duoc focus
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        top: var(--search-top-spacer);
+        right: 51px;
+        height: calc(
+            var(--search-header-height) - var(--search-top-spacer) * 2
+        );
+        width: 1px;
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+}
+
+.search-title {
+    color: rgba(22, 24, 35, 0.5);
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 5px 12px;
+}
+
+.clear,
+.load {
+    position: absolute;
+    color: rgba(22, 24, 35, 0.34);
+    right: calc(var(--search-button-width) + 14px);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.load {
+    animation: loading linear 1.5s infinite;
+}
+
+@keyframes loading {
+    from {
+        transform: translateY(-50%) rotate(0deg);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+.search {
+    .search-btn {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        width: var(--search-button-width);
+        border-top-right-radius: var(--header-border);
+        border-bottom-right-radius: var(--header-border);
+        font-size: 1.8rem;
+        color: rgba(22, 24, 35, 0.34);
+
+        &:hover {
+            background-color: rgba(22, 24, 35, 0.06);
+            cursor: pointer;
+            color: var(--black);
+        }
+    }
+}
