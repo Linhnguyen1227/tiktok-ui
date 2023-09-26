@@ -41,33 +41,34 @@ function Menu({
             );
         });
     };
-
+    const handleResetPage = () => {
+        setHistory((prev) => prev.slice(0, 1));
+    };
+    const renderMenu = (attrs) => (
+        <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+            <PopperWrapper className={cx('menu-popper')}>
+                {history.length > 1 && (
+                    <Header
+                        title={current.title}
+                        onBack={() => {
+                            setHistory((prev) =>
+                                prev.slice(0, prev.length - 1),
+                            );
+                        }}
+                    />
+                )}
+                <div className={cx('menu-body')}>{renderItem()}</div>
+            </PopperWrapper>
+        </div>
+    );
     return (
         <Tippy
             interactive={true}
             placement="bottom-end"
             delay={[0, 700]}
             hideOnClick={hideOnClick}
-            onHide={() => {
-                setHistory((prev) => prev.slice(0, 1));
-            }}
-            render={(attrs) => (
-                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper className={cx('menu-popper')}>
-                        {history.length > 1 && (
-                            <Header
-                                title={current.title}
-                                onBack={() => {
-                                    setHistory((prev) =>
-                                        prev.slice(0, prev.length - 1),
-                                    );
-                                }}
-                            />
-                        )}
-                        <div className={cx('menu-body')}>{renderItem()}</div>
-                    </PopperWrapper>
-                </div>
-            )}
+            onHide={handleResetPage}
+            render={renderMenu}
         >
             {children}
         </Tippy>

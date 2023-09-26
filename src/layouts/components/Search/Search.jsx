@@ -20,21 +20,21 @@ const cx = classNames.bind(styles);
 function Search() {
     const inputRef = useRef();
     const [showloading, setShowLoading] = useState(false);
-    const [showResults, setShowResults] = useState(true);
+    const [showResults, setShowResults] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
 
-    const debounce = useDebounce(inputValue, 500);
+    const debounceValue = useDebounce(inputValue, 500);
 
     useEffect(() => {
-        if (!debounce.trim()) {
+        if (!debounceValue.trim()) {
             setSearchResult([]);
             return;
         }
         setShowLoading(true);
         // fetch(
         //     `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        //         debounce,
+        //         debounceValue,
         //     )}&type=more`,
         // )
         //     .then((res) => res.json())
@@ -51,7 +51,7 @@ function Search() {
          */
         const fetchApi = async () => {
             try {
-                const result = await search(debounce);
+                const result = await search(debounceValue);
 
                 setSearchResult(result);
                 setShowLoading(false);
@@ -60,14 +60,14 @@ function Search() {
             }
         };
         fetchApi();
-    }, [debounce]);
+    }, [debounceValue]);
 
     const handleClear = () => {
         setInputValue('');
         setSearchResult([]);
         inputRef.current.focus();
     };
-    const handleSearchResult = () => {
+    const handleHideResult = () => {
         setShowResults(false);
         if (!inputValue) {
             setSearchResult([]);
@@ -98,7 +98,7 @@ function Search() {
                         </PopperWrapper>
                     </div>
                 )}
-                onClickOutside={handleSearchResult}
+                onClickOutside={handleHideResult}
             >
                 <div className={cx('search')}>
                     <input

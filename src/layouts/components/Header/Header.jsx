@@ -105,7 +105,7 @@ const MENU_USERS = [
 ];
 
 function Header() {
-    const currentUser = true;
+    const currentUser = false;
     //Handlelogic
     const handleOnChange = (menuItems) => {
         switch (menuItems.type) {
@@ -163,6 +163,7 @@ function Header() {
                         <>
                             <Button text>Upload</Button>
                             <Button
+                                // to="/"
                                 // iconleft={<FontAwesomeIcon icon={faRightToBracket} />}
                                 iconright={
                                     <FontAwesomeIcon icon={faRightToBracket} />
