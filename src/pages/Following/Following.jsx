@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 function Following() {
     return (
         <div className={cx('wrapper')}>
-            <h2>Following page</h2>
+            <h1>Following page</h1>
         </div>
     );
 }

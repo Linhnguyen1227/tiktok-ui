@@ -42,26 +42,26 @@
     }
 }
 .primary {
-    background-color: var(---primary-color);
-    border-color: var(---primary-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
     color: var(--white);
     &:hover {
-        border-color: var(---primary-color);
+        border-color: var(--primary-color);
         background: linear-gradient(
                 0deg,
                 rgba(0, 0, 0, 0.06),
                 rgba(0, 0, 0, 0.06)
             ),
-            var(---primary-color);
+            var(--primary-color);
     }
 }
 
 .outline {
-    border-color: 1px var(---primary-color);
-    color: var(---primary-color);
+    border-color: 1px var(--primary-color);
+    color: var(--primary-color);
 
     &:hover {
-        border-color: 1px var(---primary-color);
+        border-color: 1px var(--primary-color);
         background-color: rgba(254, 44, 85, 0.06);
     }
 }

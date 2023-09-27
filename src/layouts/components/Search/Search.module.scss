@@ -17,7 +17,7 @@
         background-color: transparent;
         color: var(--black);
         font-size: 1.6rem;
-        caret-color: var(---primary-color);
+        caret-color: var(--primary-color);
     }
     input:not(:placeholder-shown) ~ .search-btn {
         color: rgba(22, 24, 35, 0.75);

@@ -105,7 +105,7 @@ const MENU_USERS = [
 ];
 
 function Header() {
-    const currentUser = false;
+    const currentUser = true;
     //Handlelogic
     const handleOnChange = (menuItems) => {
         switch (menuItems.type) {
@@ -187,7 +187,7 @@ function Header() {
                             <Image
                                 className={cx('avatar-current')}
                                 // fallback="https://p16-sign-va.tiktokcdn.com/tosmaliva-avt-0068/59e989e348cbc96c3acc009fdfa545e1~c5_720x720.jpeg?x-expires=1695812400&x-signature=6NqTGR1jqq%2BtTmKp01SRaVdSSBw%3D"
-                                src="https://p16-sign-va.tiktokcdn/tos-maliva-avt-0068/59e989e348cbc96c3acc009fdfa545e1~c5_720x720.jpeg?x-expires=1694775600&x-signature=vulnaxjVN3c3bE%2Fbj6j5NElnE2g%3D"
+                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/59e989e348cbc96c3acc009fdfa545e1~c5_720x720.jpeg?x-expires=1695974400&x-signature=PTeZpKKBXhaB1Lwtm0wfsknB%2FWE%3D"
                                 alt="current_avatar"
                             />
                         ) : (
